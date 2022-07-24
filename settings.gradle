@@ -13,5 +13,7 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Run"
-include ':mobile'
+include ':core'
 include ':wear'
+
+enableFeaturePreview("VERSION_CATALOGS")
