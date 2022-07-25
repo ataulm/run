@@ -9,6 +9,7 @@ androidx-activity-compose = 'androidx.activity:activity-compose:1.5.0'
 androidx-wear = 'androidx.wear:wear:1.2.0'
 androidx-wear-compose-foundation = { module = 'androidx.wear.compose:compose-foundation', version.ref = 'compose-wear' }
 androidx-wear-compose-material = { module = 'androidx.wear.compose:compose-material', version.ref = 'compose-wear' }
+androidx-wear-compose-navigation = { module = 'androidx.wear.compose:compose-navigation', version.ref = 'compose-wear' }
 kotlinx-coroutines-core = 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
 
 [plugins]
