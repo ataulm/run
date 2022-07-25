@@ -33,7 +33,18 @@ fun App() {
             startDestination = Home.route
         ) {
             composable(Home.route) {
-                HomeScreen()
+                HomeScreen(
+                    onClickTodaysRun = {
+                        // TODO: args
+                        navController.navigate(Run.route)
+                    },
+                    onClickQuickRun = {
+                        // TODO: args
+                        navController.navigate(Run.route)
+                    },
+                    onClickViewSchedule = { navController.navigate(Schedule.route) },
+                    onClickSettings = { navController.navigate(Settings.route) },
+                )
             }
 
             composable(Run.route) {

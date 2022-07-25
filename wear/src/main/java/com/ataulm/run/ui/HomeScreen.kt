@@ -15,17 +15,42 @@
  */
 package com.ataulm.run.ui
 
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.Text
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onClickTodaysRun: () -> Unit,
+    onClickQuickRun: () -> Unit,
+    onClickViewSchedule: () -> Unit,
+    onClickSettings: () -> Unit,
+) {
+    Column {
+        HomeItem("today's run", onClickTodaysRun)
+        HomeItem("quick run", onClickQuickRun)
+        HomeItem("view schedule", onClickViewSchedule)
+        HomeItem("settings", onClickSettings)
+    }
+}
+
+@Composable
+private fun HomeItem(text: String, onClick: () -> Unit) {
     Text(
-        modifier = Modifier.fillMaxSize(),
-        text = "home",
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable { onClick() }
+            .heightIn(min = 48.dp)
+            .wrapContentHeight(align = Alignment.CenterVertically),
+        text = text,
         textAlign = TextAlign.Center
     )
 }
