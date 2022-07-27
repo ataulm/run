@@ -35,7 +35,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.wear.get()
+        kotlinCompilerExtensionVersion libs.versions.compose.core.get()
     }
 }
 
@@ -43,8 +43,11 @@ dependencies {
     implementation project(':core')
 
     implementation libs.androidx.activity.compose
+    implementation libs.androidx.compose.ui.tooling.preview
     implementation libs.androidx.wear
     implementation libs.androidx.wear.compose.foundation
     implementation libs.androidx.wear.compose.material
     implementation libs.androidx.wear.compose.navigation
+
+    debugImplementation libs.androidx.compose.ui.tooling
 }

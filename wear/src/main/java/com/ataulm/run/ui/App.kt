@@ -16,9 +16,11 @@
 package com.ataulm.run.ui
 
 import androidx.compose.runtime.Composable
+import androidx.wear.compose.material.rememberSwipeToDismissBoxState
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
+import androidx.wear.compose.navigation.rememberSwipeDismissableNavHostState
 import com.ataulm.run.Home
 import com.ataulm.run.Run
 import com.ataulm.run.Schedule
@@ -28,18 +30,20 @@ import com.ataulm.run.Settings
 fun App() {
     AppTheme {
         val navController = rememberSwipeDismissableNavController()
+        val swipeToDismissState = rememberSwipeToDismissBoxState()
         SwipeDismissableNavHost(
             navController = navController,
-            startDestination = Home.route
+            startDestination = Home.route,
+            state = rememberSwipeDismissableNavHostState(swipeToDismissState)
         ) {
             composable(Home.route) {
                 HomeScreen(
                     onClickTodaysRun = {
-                        // TODO: args
+                        // TODO: args that differentiate between quick run and a scheduled run
                         navController.navigate(Run.route)
                     },
                     onClickQuickRun = {
-                        // TODO: args
+                        // TODO: args that differentiate between quick run and a scheduled run
                         navController.navigate(Run.route)
                     },
                     onClickViewSchedule = { navController.navigate(Schedule.route) },
