@@ -12,8 +12,9 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Run"
-include ':core'
+rootProject.name = 'Run'
+include ':models'
+include ':tracking'
 include ':wear'
 
-enableFeaturePreview("VERSION_CATALOGS")
+enableFeaturePreview('VERSION_CATALOGS')

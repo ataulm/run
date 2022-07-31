@@ -13,13 +13,19 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.ui
+package com.ataulm.run.tracking
 
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.health.services.client.ExerciseClient
 
-@Preview(
-    device = Devices.WEAR_OS_SMALL_ROUND,
-    showSystemUi = true
-)
-annotation class WearSmallRoundPreview
+internal class HealthServicesExerciseTracker(
+    private val client: ExerciseClient
+) : ExerciseTracker {
+
+    override fun prepareToTrack() {
+        TODO("Not yet implemented")
+    }
+
+    override fun startTracking() {
+        TODO("Not yet implemented")
+    }
+}

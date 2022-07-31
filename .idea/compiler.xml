@@ -3,6 +3,8 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
       <module name="Run.mobile" target="11" />
+      <module name="Run.mylibrary" target="11" />
+      <module name="Run.tracking" target="11" />
       <module name="Run.wear" target="11" />
     </bytecodeTargetLevel>
   </component>

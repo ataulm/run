@@ -13,13 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.ui
+package com.ataulm.run.tracking
 
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
+interface ExerciseTracker {
 
-@Preview(
-    device = Devices.WEAR_OS_SMALL_ROUND,
-    showSystemUi = true
-)
-annotation class WearSmallRoundPreview
+    /**
+     * Prepare for a given exercise type.
+     * TODO:
+     *  add exercise type
+     *  return flow of events
+     */
+    fun prepareToTrack()
+
+    /**
+     * Start tracking exercise
+     * TODO:
+     *  return Flow of events
+     */
+    fun startTracking()
+}
