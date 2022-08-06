@@ -13,15 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.core
+package com.ataulm.run
 
-/**
- * (0-indexed) Day in (28-day) Plan
- * Description
- */
-interface Session {
-    val trainingPlanId: String
-    val dayInPlan: Int
-    val description: String
-    val exercises: List<Exercise>
+import kotlinx.coroutines.flow.Flow
+
+interface SessionsRepository {
+
+    fun getSessions(trainingPlanId: String): Flow<List<Session>>
 }

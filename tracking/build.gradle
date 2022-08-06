@@ -28,6 +28,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.guava:guava:30.1.1-android'
+    implementation libs.androidx.concurrent.futures.ktx
     implementation libs.androidx.health.services.client
+    implementation libs.guava.android
 }

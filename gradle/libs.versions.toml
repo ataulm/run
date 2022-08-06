@@ -10,11 +10,13 @@ ktlint = '0.41.0'
 androidx-activity-compose = 'androidx.activity:activity-compose:1.5.1'
 androidx-compose-ui-tooling = { module = 'androidx.compose.ui:ui-tooling', version.ref = 'compose-core' }
 androidx-compose-ui-tooling-preview = { module = 'androidx.compose.ui:ui-tooling-preview', version.ref = 'compose-core' }
+androidx-concurrent-futures-ktx = 'androidx.concurrent:concurrent-futures-ktx:1.1.0'
 androidx-health-services-client = 'androidx.health:health-services-client:1.0.0-alpha03'
 androidx-wear = 'androidx.wear:wear:1.2.0'
 androidx-wear-compose-foundation = { module = 'androidx.wear.compose:compose-foundation', version.ref = 'compose-wear' }
 androidx-wear-compose-material = { module = 'androidx.wear.compose:compose-material', version.ref = 'compose-wear' }
 androidx-wear-compose-navigation = { module = 'androidx.wear.compose:compose-navigation', version.ref = 'compose-wear' }
+guava-android = 'com.google.guava:guava:30.1.1-android'
 kotlinx-coroutines-core = 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
 
 [plugins]

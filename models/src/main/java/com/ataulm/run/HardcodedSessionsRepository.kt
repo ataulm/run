@@ -13,6 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.core
+package com.ataulm.run
 
-data class TrainingPlan(val id: String)
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+
+class HardcodedSessionsRepository : SessionsRepository {
+
+    override fun getSessions(trainingPlanId: String): Flow<List<Session>> {
+        // TODO("Provide a hardcoded list of sessions")
+        val sessions = emptyList<Session>()
+        return flowOf(sessions)
+    }
+}

@@ -13,16 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.core
+package com.ataulm.run
 
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+interface Exercise
 
-class HardcodedSessionsRepository : SessionsRepository {
+/**
+ * Steps can include a target constraint.
+ */
+enum class ConstraintType {
+    /**
+     * Min-max pace
+     */
+    PACE,
 
-    override fun getSessions(trainingPlanId: String): Flow<List<Session>> {
-        // TODO("Provide a hardcoded list of sessions")
-        val sessions = emptyList<Session>()
-        return flowOf(sessions)
-    }
+    /**
+     * Min-max heart rate
+     */
+    HEART_RATE
+}
+
+enum class DurationType {
+    /**
+     * Catch your breath but keep moving.
+     * Time- or distance-based.
+     * No pace constraints
+     */
+    RECOVER,
+
+    /**
+     * Active movement. time- or distance-based
+     * Pace
+     */
+    RUN,
+
+    /**
+     * Chill out. Time-based
+     */
+    REST,
 }

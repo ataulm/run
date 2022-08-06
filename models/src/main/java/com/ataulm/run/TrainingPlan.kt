@@ -13,11 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.core
+package com.ataulm.run
 
-import kotlinx.coroutines.flow.Flow
-
-interface SessionsRepository {
-
-    fun getSessions(trainingPlanId: String): Flow<List<Session>>
-}
+data class TrainingPlan(val id: String)

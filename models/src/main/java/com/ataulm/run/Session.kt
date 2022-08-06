@@ -13,41 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.ataulm.run.core
-
-interface Exercise
+package com.ataulm.run
 
 /**
- * Steps can include a target constraint.
+ * (0-indexed) Day in (28-day) Plan
+ * Description
  */
-enum class ConstraintType {
-    /**
-     * Min-max pace
-     */
-    PACE,
-
-    /**
-     * Min-max heart rate
-     */
-    HEART_RATE
-}
-
-enum class DurationType {
-    /**
-     * Catch your breath but keep moving.
-     * Time- or distance-based.
-     * No pace constraints
-     */
-    RECOVER,
-
-    /**
-     * Active movement. time- or distance-based
-     * Pace
-     */
-    RUN,
-
-    /**
-     * Chill out. Time-based
-     */
-    REST,
+interface Session {
+    val trainingPlanId: String
+    val dayInPlan: Int
+    val description: String
+    val exercises: List<Exercise>
 }
