@@ -18,14 +18,82 @@ package com.ataulm.run
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.ataulm.run.ui.App
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.wear.compose.material.AutoCenteringParams
+import androidx.wear.compose.material.Checkbox
+import androidx.wear.compose.material.CompactChip
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Scaffold
+import androidx.wear.compose.material.ScalingLazyColumn
+import androidx.wear.compose.material.ScalingLazyListScope
+import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.TimeText
+import androidx.wear.compose.material.ToggleChip
+import androidx.wear.compose.material.Vignette
+import androidx.wear.compose.material.VignettePosition
+import androidx.wear.compose.material.rememberScalingLazyListState
+import androidx.wear.compose.material.scrollAway
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            App()
+            WearDac()
         }
     }
+}
+
+
+@Composable
+fun ComposeForWearOs() {
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
+    Scaffold(
+        timeText = { TimeText(modifier = Modifier.scrollAway(listState)) },
+        vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
+        positionIndicator = { PositionIndicator(scalingLazyListState = listState) }
+    ) {
+        ScalingLazyColumn(
+            modifier = Modifier.fillMaxSize(),
+            autoCentering = AutoCenteringParams(itemIndex = 0),
+            state = listState
+        ) {
+            shoppingList()
+        }
+    }
+}
+
+private fun ScalingLazyListScope.shoppingList() {
+    item { ShoppingListItem(false, "Butter") }
+    item { ShoppingListItem(true, "Brown sugar") }
+    item { ShoppingListItem(true, "Vanilla extract") }
+    item { ShoppingListItem(false, "Eggs") }
+    item { ShoppingListItem(false, "Flour") }
+    item { ShoppingListItem(true, "Chocolate chips") }
+    item { ShoppingListItem(false, "Cocoa powder") }
+    item { ShoppingListItem(false, "Baking powder") }
+    item {
+        CompactChip(onClick = { /*TODO*/ }, label = {
+            Text("Archive")
+        })
+    }
+}
+
+@Composable
+private fun ShoppingListItem(checked: Boolean, name: String) {
+    ToggleChip(
+        checked = checked,
+        label = { Text(text = name) },
+        onCheckedChange = {},
+        modifier = Modifier.fillMaxWidth(),
+        toggleControl = {
+            Checkbox(
+                checked = checked,
+                enabled = true
+            )
+        }
+    )
 }

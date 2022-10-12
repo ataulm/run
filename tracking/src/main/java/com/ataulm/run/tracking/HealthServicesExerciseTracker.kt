@@ -26,7 +26,7 @@ import androidx.health.services.client.data.WarmUpConfig
 internal class HealthServicesExerciseTracker(
     private val client: ExerciseClient
 ) : ExerciseTracker {
-
+    /*
     private val listener = object : ExerciseUpdateListener {
         override fun onExerciseUpdate(update: ExerciseUpdate) {
             // Process the latest information about the exercise.
@@ -78,5 +78,14 @@ internal class HealthServicesExerciseTracker(
             .setExerciseType(ExerciseType.RUNNING)
             .setDataTypes(RUNNING_DATA_TYPES)
             .build()
+    }
+
+ */
+    override fun prepareToTrack() {
+        TODO("Not yet implemented")
+    }
+
+    override fun startTracking() {
+        TODO("Not yet implemented")
     }
 }

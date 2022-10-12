@@ -2,7 +2,7 @@
 android-gradle-plugin = '7.2.1'
 android-compile-sdk = '32'
 compose-core = '1.2.0'
-compose-wear = '1.0.0'
+compose-wear = '1.1.0-alpha07'
 kotlin = '1.7.0'
 ktlint = '0.41.0'
 

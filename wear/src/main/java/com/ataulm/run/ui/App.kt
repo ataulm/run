@@ -16,6 +16,9 @@
 package com.ataulm.run.ui
 
 import androidx.compose.runtime.Composable
+import androidx.wear.compose.material.PositionIndicator
+import androidx.wear.compose.material.Scaffold
+import androidx.wear.compose.material.TimeText
 import androidx.wear.compose.material.rememberSwipeToDismissBoxState
 import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
@@ -31,37 +34,46 @@ fun App() {
     AppTheme {
         val navController = rememberSwipeDismissableNavController()
         val swipeToDismissState = rememberSwipeToDismissBoxState()
-        SwipeDismissableNavHost(
-            navController = navController,
-            startDestination = Home.route,
-            state = rememberSwipeDismissableNavHostState(swipeToDismissState)
+        Scaffold(
+            timeText = { TimeText() },
+//        vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
+            positionIndicator = {
+
+            }
         ) {
-            composable(Home.route) {
-                HomeScreen(
-                    onClickTodaysRun = {
-                        // TODO: args that differentiate between quick run and a scheduled run
-                        navController.navigate(Run.route)
-                    },
-                    onClickQuickRun = {
-                        // TODO: args that differentiate between quick run and a scheduled run
-                        navController.navigate(Run.route)
-                    },
-                    onClickViewSchedule = { navController.navigate(Schedule.route) },
-                    onClickSettings = { navController.navigate(Settings.route) },
-                )
-            }
+            SwipeDismissableNavHost(
+                navController = navController,
+                startDestination = Home.route,
+                state = rememberSwipeDismissableNavHostState(swipeToDismissState)
+            ) {
+                composable(Home.route) {
+                    HomeScreen(
+                        onClickTodaysRun = {
+                            // TODO: args that differentiate between quick run and a scheduled run
+                            navController.navigate(Run.route)
+                        },
+                        onClickQuickRun = {
+                            // TODO: args that differentiate between quick run and a scheduled run
+                            navController.navigate(Run.route)
+                        },
+                        onClickViewSchedule = { navController.navigate(Schedule.route) },
+                        onClickSettings = { navController.navigate(Settings.route) },
+                    )
+                }
 
-            composable(Run.route) {
-                RunScreen()
-            }
+                composable(Run.route) {
+                    RunScreen()
+                }
 
-            composable(Schedule.route) {
-                ScheduleScreen()
-            }
+                composable(Schedule.route) {
+                    ScheduleScreen()
+                }
 
-            composable(Settings.route) {
-                SettingsScreen()
+                composable(Settings.route) {
+                    SettingsScreen()
+                }
             }
         }
+
     }
 }
