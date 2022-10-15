@@ -18,20 +18,44 @@ package com.ataulm.run
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AccessibleForward
+import androidx.compose.material.icons.filled.DirectionsBike
+import androidx.compose.material.icons.filled.DirectionsRun
+import androidx.compose.material.icons.filled.FitnessCenter
+import androidx.compose.material.icons.filled.Hiking
+import androidx.compose.material.icons.filled.Kayaking
+import androidx.compose.material.icons.filled.Kitesurfing
+import androidx.compose.material.icons.filled.Paragliding
+import androidx.compose.material.icons.filled.Snowboarding
+import androidx.compose.material.icons.filled.SportsBasketball
+import androidx.compose.material.icons.filled.SportsFootball
+import androidx.compose.material.icons.filled.SportsKabaddi
+import androidx.compose.material.icons.filled.SportsSoccer
+import androidx.compose.material.icons.filled.SportsTennis
+import androidx.compose.material.icons.filled.Surfing
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.AutoCenteringParams
-import androidx.wear.compose.material.Checkbox
+import androidx.wear.compose.material.Chip
+import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.CompactChip
+import androidx.wear.compose.material.Icon
 import androidx.wear.compose.material.PositionIndicator
 import androidx.wear.compose.material.Scaffold
 import androidx.wear.compose.material.ScalingLazyColumn
 import androidx.wear.compose.material.ScalingLazyListScope
 import androidx.wear.compose.material.Text
+import androidx.wear.compose.material.TimeSource
 import androidx.wear.compose.material.TimeText
-import androidx.wear.compose.material.ToggleChip
 import androidx.wear.compose.material.Vignette
 import androidx.wear.compose.material.VignettePosition
 import androidx.wear.compose.material.rememberScalingLazyListState
@@ -42,7 +66,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            WearDac()
+            ComposeForWearOs()
         }
     }
 }
@@ -52,7 +76,16 @@ class MainActivity : ComponentActivity() {
 fun ComposeForWearOs() {
     val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
     Scaffold(
-        timeText = { TimeText(modifier = Modifier.scrollAway(listState)) },
+        timeText = {
+            TimeText(
+                modifier = Modifier.scrollAway(listState),
+                timeSource = object : TimeSource {
+                    override val currentTime: String
+                        @Composable
+                        get() = "10:09"
+                }
+            )
+        },
         vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
         positionIndicator = { PositionIndicator(scalingLazyListState = listState) }
     ) {
@@ -61,39 +94,85 @@ fun ComposeForWearOs() {
             autoCentering = AutoCenteringParams(itemIndex = 0),
             state = listState
         ) {
-            shoppingList()
+//            weekProgress()
+//            exerciseTypes()
         }
     }
 }
 
-private fun ScalingLazyListScope.shoppingList() {
-    item { ShoppingListItem(false, "Butter") }
-    item { ShoppingListItem(true, "Brown sugar") }
-    item { ShoppingListItem(true, "Vanilla extract") }
-    item { ShoppingListItem(false, "Eggs") }
-    item { ShoppingListItem(false, "Flour") }
-    item { ShoppingListItem(true, "Chocolate chips") }
-    item { ShoppingListItem(false, "Cocoa powder") }
-    item { ShoppingListItem(false, "Baking powder") }
-    item {
-        CompactChip(onClick = { /*TODO*/ }, label = {
-            Text("Archive")
-        })
-    }
+private fun ScalingLazyListScope.exerciseTypes() {
+    item { ExerciseType(Icons.Default.SportsBasketball, "Basketball") }
+    item { ExerciseType(Icons.Default.DirectionsBike, "Cycle") }
+    item { ExerciseType(Icons.Default.SportsFootball, "Football") }
+    item { ExerciseType(Icons.Default.Hiking, "Hike") }
+    item { ExerciseType(Icons.Default.SportsKabaddi, "Kabaddi") }
+    item { ExerciseType(Icons.Default.Kayaking, "Kayak") }
+    item { ExerciseType(Icons.Default.Kitesurfing, "Kite surf") }
+    item { ExerciseType(Icons.Default.Paragliding, "Paraglide") }
+    item { ExerciseType(Icons.Default.Snowboarding, "Snowboard") }
+    item { ExerciseType(Icons.Default.SportsSoccer, "Soccer") }
+    item { ExerciseType(Icons.Default.Surfing, "Surf") }
+    item { ExerciseType(Icons.Default.SportsTennis, "Tennis") }
+    item { ExerciseType(Icons.Default.DirectionsRun, "Run") }
+    item { ExerciseType(Icons.Default.FitnessCenter, "Weights") }
+    item { ExerciseType(Icons.Default.AccessibleForward, "Wheelchair race") }
 }
 
 @Composable
-private fun ShoppingListItem(checked: Boolean, name: String) {
-    ToggleChip(
-        checked = checked,
-        label = { Text(text = name) },
-        onCheckedChange = {},
-        modifier = Modifier.fillMaxWidth(),
-        toggleControl = {
-            Checkbox(
-                checked = checked,
-                enabled = true
-            )
-        }
+private fun ExerciseType(icon: ImageVector, name: String) {
+    Chip(
+        icon = {
+            Icon(icon, null)
+        },
+        colors = ChipDefaults.primaryChipColors(
+            backgroundColor = Color(0xFF03DAC5),
+            contentColor = Color(0xFF202124),
+        ),
+        label = { Text(name) },
+        onClick = {},
+        modifier = Modifier.fillMaxWidth()
+    )
+}
+
+private fun ScalingLazyListScope.weekProgress() {
+    item {
+        Image(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 16.dp),
+            painter = painterResource(id = R.drawable.chart), contentDescription = null
+        )
+    }
+    item {
+        CompactChip(
+            colors = ChipDefaults.primaryChipColors(
+                backgroundColor = Color(0xFF03DAC5),
+                contentColor = Color(0xFF202124),
+            ),
+            onClick = { /*TODO*/ },
+            label = {
+                Text("New")
+            }
+        )
+    }
+    item { ShoppingListItem("Today") }
+    item { ShoppingListItem("Saturday") }
+    item { ShoppingListItem("Friday") }
+    item { ShoppingListItem("Thursday") }
+    item { ShoppingListItem("Wednesday") }
+    item { ShoppingListItem("Tuesday") }
+    item { ShoppingListItem("Monday") }
+}
+
+@Composable
+private fun ShoppingListItem(name: String) {
+    Chip(
+        colors = ChipDefaults.primaryChipColors(
+            backgroundColor = Color(0xFF03DAC5),
+            contentColor = Color(0xFF202124),
+        ),
+        label = { Text(name) },
+        onClick = {},
+        modifier = Modifier.fillMaxWidth()
     )
 }

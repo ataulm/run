@@ -10,6 +10,7 @@ ktlint = '0.41.0'
 androidx-activity-compose = 'androidx.activity:activity-compose:1.5.1'
 androidx-compose-ui-tooling = { module = 'androidx.compose.ui:ui-tooling', version.ref = 'compose-core' }
 androidx-compose-ui-tooling-preview = { module = 'androidx.compose.ui:ui-tooling-preview', version.ref = 'compose-core' }
+androidx-compose-ui-icons-extended = { module = 'androidx.compose.material:material-icons-extended', version.ref = 'compose-core' }
 androidx-concurrent-futures-ktx = 'androidx.concurrent:concurrent-futures-ktx:1.1.0'
 androidx-health-services-client = 'androidx.health:health-services-client:1.0.0-alpha03'
 androidx-wear = 'androidx.wear:wear:1.2.0'

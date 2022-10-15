@@ -44,6 +44,7 @@ dependencies {
     implementation project(':tracking')
 
     implementation libs.androidx.activity.compose
+    implementation libs.androidx.compose.ui.icons.extended
     implementation libs.androidx.compose.ui.tooling.preview
     implementation libs.androidx.wear
     implementation libs.androidx.wear.compose.foundation
