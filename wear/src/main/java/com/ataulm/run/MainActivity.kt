@@ -19,18 +19,24 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccessibleForward
 import androidx.compose.material.icons.filled.DirectionsBike
 import androidx.compose.material.icons.filled.DirectionsRun
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Hiking
 import androidx.compose.material.icons.filled.Kayaking
 import androidx.compose.material.icons.filled.Kitesurfing
 import androidx.compose.material.icons.filled.Paragliding
+import androidx.compose.material.icons.filled.Pause
 import androidx.compose.material.icons.filled.Snowboarding
 import androidx.compose.material.icons.filled.SportsBasketball
 import androidx.compose.material.icons.filled.SportsFootball
@@ -39,12 +45,18 @@ import androidx.compose.material.icons.filled.SportsSoccer
 import androidx.compose.material.icons.filled.SportsTennis
 import androidx.compose.material.icons.filled.Surfing
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.wear.compose.material.AutoCenteringParams
+import androidx.wear.compose.material.Button
+import androidx.wear.compose.material.ButtonColors
+import androidx.wear.compose.material.ButtonDefaults
 import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.ChipDefaults
 import androidx.wear.compose.material.CompactChip
@@ -66,11 +78,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposeForWearOs()
+//            ComposeForWearOs()
+            Workout()
         }
     }
 }
 
+private val timeSource = object : TimeSource {
+    override val currentTime: String
+        @Composable
+        get() = "10:09"
+}
 
 @Composable
 fun ComposeForWearOs() {
@@ -79,11 +97,7 @@ fun ComposeForWearOs() {
         timeText = {
             TimeText(
                 modifier = Modifier.scrollAway(listState),
-                timeSource = object : TimeSource {
-                    override val currentTime: String
-                        @Composable
-                        get() = "10:09"
-                }
+                timeSource = timeSource
             )
         },
         vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
@@ -94,8 +108,58 @@ fun ComposeForWearOs() {
             autoCentering = AutoCenteringParams(itemIndex = 0),
             state = listState
         ) {
-//            weekProgress()
+            weekProgress()
 //            exerciseTypes()
+        }
+    }
+}
+
+@Composable
+fun Workout() {
+    val listState = rememberScalingLazyListState(initialCenterItemIndex = 0)
+    Scaffold(
+        timeText = {
+            TimeText(
+                timeSource = timeSource
+            )
+        },
+        vignette = { Vignette(vignettePosition = VignettePosition.TopAndBottom) },
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.fillMaxSize()
+        ) {
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Row (verticalAlignment = Alignment.CenterVertically) {
+                    Image(
+                        colorFilter = ColorFilter.tint(Color.White),
+                        imageVector = Icons.Default.Favorite,
+                        modifier = Modifier.size(12.dp),
+                        contentDescription = null,
+                    )
+                    Text(
+                        " 167   ",
+                        fontSize = 20.sp
+                    )
+                }
+                Text(
+                    "0h 11m 10s",
+                    fontSize = 28.sp,
+                    color = Color(0xFF03DAC5)
+                )
+                Button(
+                    modifier = Modifier.padding(top = 12.dp),
+                    onClick = { /*TODO*/ },
+                    colors = ButtonDefaults.primaryButtonColors(
+                        backgroundColor = Color(0xFF03DAC5),
+                        contentColor = Color(0xFF202124)
+                    )
+                ) {
+                    Icon(imageVector = Icons.Default.Pause, contentDescription = null)
+                }
+            }
         }
     }
 }
