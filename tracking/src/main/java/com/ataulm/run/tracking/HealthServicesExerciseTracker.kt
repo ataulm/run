@@ -22,7 +22,7 @@ import androidx.health.services.client.data.ExerciseLapSummary
 import androidx.health.services.client.data.ExerciseType
 import androidx.health.services.client.data.ExerciseUpdate
 import androidx.health.services.client.data.WarmUpConfig
-
+/*
 internal class HealthServicesExerciseTracker(
     private val client: ExerciseClient
 ) : ExerciseTracker {
@@ -80,3 +80,4 @@ internal class HealthServicesExerciseTracker(
             .build()
     }
 }
+*/
