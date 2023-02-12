@@ -4,8 +4,8 @@
     <bytecodeTargetLevel target="1.8">
       <module name="Run.mobile" target="11" />
       <module name="Run.mylibrary" target="11" />
-      <module name="Run.tracking" target="11" />
-      <module name="Run.wear" target="11" />
+      <module name="Run.tracking" target="19" />
+      <module name="Run.wear" target="19" />
     </bytecodeTargetLevel>
   </component>
 </project>

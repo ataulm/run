@@ -32,8 +32,8 @@ import androidx.wear.compose.material.Chip
 import androidx.wear.compose.material.Text
 
 @Composable
-fun RunScreen(modifier: Modifier = Modifier) {
-    var buttonText by remember { mutableStateOf("Start") }
+fun RunScreen(modifier: Modifier = Modifier, onClickAuth: () -> Unit = {}) {
+    var buttonText by remember { mutableStateOf("Auth") }
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -48,14 +48,7 @@ fun RunScreen(modifier: Modifier = Modifier) {
                     textAlign = TextAlign.Center
                 )
             },
-            onClick = {
-                // TODO: start workout
-                if (buttonText == "Start") {
-                    buttonText = "Stop"
-                } else {
-                    buttonText = "Start"
-                }
-            }
+            onClick = onClickAuth
         )
     }
 }

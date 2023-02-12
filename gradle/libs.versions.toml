@@ -3,6 +3,7 @@ android-gradle-plugin = '7.2.1'
 android-compile-sdk = '32'
 compose-core = '1.2.0'
 compose-wear = '1.0.0'
+hilt = '2.45'
 kotlin = '1.7.0'
 ktlint = '0.41.0'
 
@@ -16,12 +17,16 @@ androidx-wear = 'androidx.wear:wear:1.2.0'
 androidx-wear-compose-foundation = { module = 'androidx.wear.compose:compose-foundation', version.ref = 'compose-wear' }
 androidx-wear-compose-material = { module = 'androidx.wear.compose:compose-material', version.ref = 'compose-wear' }
 androidx-wear-compose-navigation = { module = 'androidx.wear.compose:compose-navigation', version.ref = 'compose-wear' }
+androidx-wear-phone-interactions = 'androidx.wear:wear-phone-interactions:1.0.1'
 guava-android = 'com.google.guava:guava:30.1.1-android'
+hilt-android = { module = 'com.google.dagger:hilt-android', version.ref = 'hilt' }
+hilt-compiler = { module = 'com.google.dagger:hilt-compiler', version.ref = 'hilt' }
 kotlinx-coroutines-core = 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.3'
 
 [plugins]
 android-app = { id = 'com.android.application', version.ref = 'android-gradle-plugin' }
 android-lib = { id = 'com.android.library', version.ref = 'android-gradle-plugin' }
+hilt-android = { id = 'com.google.dagger.hilt.android', version.ref = 'hilt' }
 kotlin-android = { id = 'org.jetbrains.kotlin.android', version.ref = 'kotlin' }
 kotlin-jvm = { id = 'org.jetbrains.kotlin.jvm', version.ref = 'kotlin' }
 spotless = 'com.diffplug.spotless:6.7.2'
