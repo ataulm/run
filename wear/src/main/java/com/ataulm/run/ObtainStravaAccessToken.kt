@@ -7,6 +7,8 @@ import androidx.wear.phone.interactions.authentication.CodeVerifier
 import androidx.wear.phone.interactions.authentication.OAuthRequest
 import androidx.wear.phone.interactions.authentication.OAuthResponse
 import androidx.wear.phone.interactions.authentication.RemoteAuthClient
+import dagger.hilt.android.qualifiers.ApplicationContext
+import javax.inject.Inject
 
 /**
  * Uses the [RemoveAuthClient] to initiate the OAuth 2.0 flow to obtain an access token.
@@ -15,7 +17,9 @@ import androidx.wear.phone.interactions.authentication.RemoteAuthClient
  * user can sign in. It's controlled by the (OEM) companion app which all users should have anyway
  * because it's necessary to setup the watch.
  */
-class ObtainStravaAccessToken(private val context: Context) {
+class ObtainStravaAccessToken @Inject constructor(
+    @ApplicationContext private val context: Context
+) {
 
     operator fun invoke(
         onAccessTokenObtained: (String) -> Unit,

@@ -21,8 +21,6 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavHostState
-import androidx.wear.phone.interactions.authentication.OAuthRequest
-import androidx.wear.phone.interactions.authentication.OAuthResponse
 import com.ataulm.run.Home
 import com.ataulm.run.Run
 import com.ataulm.run.Schedule
@@ -39,22 +37,7 @@ fun App(makeAuthRequest: () -> Unit) {
             state = rememberSwipeDismissableNavHostState(swipeToDismissState)
         ) {
             composable(Home.route) {
-                RunScreen() {
-                    makeAuthRequest()
-                }
-                // TODO: let's just start with the RunScreen for now.
-//                HomeScreen(
-//                    onClickTodaysRun = {
-//                        // TODO: args that differentiate between quick run and a scheduled run
-//                        navController.navigate(Run.route)
-//                    },
-//                    onClickQuickRun = {
-//                        // TODO: args that differentiate between quick run and a scheduled run
-//                        navController.navigate(Run.route)
-//                    },
-//                    onClickViewSchedule = { navController.navigate(Schedule.route) },
-//                    onClickSettings = { navController.navigate(Settings.route) },
-//                )
+                ReadyToRunRoute()
             }
 
             composable(Run.route) {
@@ -71,3 +54,4 @@ fun App(makeAuthRequest: () -> Unit) {
         }
     }
 }
+

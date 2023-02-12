@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId 'com.ataulm.run'
@@ -40,7 +40,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion libs.versions.compose.core.get()
+        kotlinCompilerExtensionVersion libs.versions.compose.compiler.get()
     }
 }
 
@@ -54,12 +54,15 @@ dependencies {
 
     implementation libs.androidx.activity.compose
     implementation libs.androidx.compose.ui.tooling.preview
+    implementation libs.androidx.hilt.navigation.compose
+    implementation libs.androidx.lifecycle.runtime.compose
     implementation libs.androidx.wear
     implementation libs.androidx.wear.compose.foundation
     implementation libs.androidx.wear.compose.material
     implementation libs.androidx.wear.compose.navigation
     implementation libs.androidx.wear.phone.interactions
     implementation libs.hilt.android
+
     kapt libs.hilt.compiler
 
     debugImplementation libs.androidx.compose.ui.tooling

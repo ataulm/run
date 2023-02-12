@@ -22,6 +22,7 @@ import androidx.fragment.app.FragmentActivity
 import com.ataulm.run.ui.App
 import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,3 +44,5 @@ class MainActivity : FragmentActivity() {
         }
     }
 }
+
+
