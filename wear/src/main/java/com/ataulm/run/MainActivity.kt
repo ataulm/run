@@ -16,7 +16,6 @@
 package com.ataulm.run
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.fragment.app.FragmentActivity
 import com.ataulm.run.ui.App
@@ -28,19 +27,7 @@ class MainActivity : FragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            App(
-                makeAuthRequest = {
-                    val obtainStravaAccessToken = ObtainStravaAccessToken(this)
-                    obtainStravaAccessToken(
-                        onAccessTokenObtained = { accessToken ->
-                            // TODO: save the accessToken somewhere
-                        },
-                        onAuthError = {
-                            // TODO: show an error? from here??
-                        }
-                    )
-                }
-            )
+            App()
         }
     }
 }

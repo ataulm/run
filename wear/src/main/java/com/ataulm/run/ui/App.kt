@@ -21,35 +21,20 @@ import androidx.wear.compose.navigation.SwipeDismissableNavHost
 import androidx.wear.compose.navigation.composable
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavController
 import androidx.wear.compose.navigation.rememberSwipeDismissableNavHostState
-import com.ataulm.run.Home
-import com.ataulm.run.Run
-import com.ataulm.run.Schedule
-import com.ataulm.run.Settings
+import com.ataulm.run.ReadyToRun
 
 @Composable
-fun App(makeAuthRequest: () -> Unit) {
+fun App() {
     AppTheme {
         val navController = rememberSwipeDismissableNavController()
         val swipeToDismissState = rememberSwipeToDismissBoxState()
         SwipeDismissableNavHost(
             navController = navController,
-            startDestination = Home.route,
+            startDestination = ReadyToRun.route,
             state = rememberSwipeDismissableNavHostState(swipeToDismissState)
         ) {
-            composable(Home.route) {
+            composable(ReadyToRun.route) {
                 ReadyToRunRoute()
-            }
-
-            composable(Run.route) {
-                RunScreen()
-            }
-
-            composable(Schedule.route) {
-                ScheduleScreen()
-            }
-
-            composable(Settings.route) {
-                SettingsScreen()
             }
         }
     }
